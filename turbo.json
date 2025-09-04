@@ -3,12 +3,6 @@
   "globalDependencies": ["**/.env.*local"],
   "ui": "tui",
   "tasks": {
-    "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
-      "env": []
-    },
     "lint": {
       "dependsOn": ["^lint"]
     },
@@ -20,7 +14,13 @@
       "persistent": true,
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"],
-      "env": []
+      "env": ["NODE_ENV"]
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
+      "env": ["NODE_ENV"]
     },
     "vercel:env": {
       "dependsOn": ["^vercel:env"],
